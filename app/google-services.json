@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "620861622931",
+    "firebase_url": "https://billing-24271-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "billing-24271",
+    "storage_bucket": "billing-24271.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620861622931:android:3c0e61dcc00aeaab3fdb66",
+        "android_client_info": {
+          "package_name": "com.example.billing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620861622931-61mtb2hdb2f422n9mfjt4hkmcgfke856.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7JgCchGJp41DTVENWOJmP6tmOxTrnlIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620861622931-61mtb2hdb2f422n9mfjt4hkmcgfke856.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

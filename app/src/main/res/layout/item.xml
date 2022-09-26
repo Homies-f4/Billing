@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".05"
+                android:layout_height="wrap_content"
+                android:id="@+id/sno"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:text="1."/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".60"
+                android:layout_height="wrap_content"
+                android:id="@+id/dish"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:text="Chilli Chicken"/>
+            <TextView
+                android:id="@+id/cost"
+                android:layout_width="0dp"
+                android:layout_weight=".15"
+                android:layout_height="match_parent"
+                android:text="250.00"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
