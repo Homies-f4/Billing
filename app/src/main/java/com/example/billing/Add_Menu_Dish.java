@@ -43,7 +43,6 @@ public class Add_Menu_Dish extends AppCompatActivity {
                 startActivity(new Intent(Add_Menu_Dish.this, MenuDishes.class));
             }
         });
-
         Button btn2= findViewById(R.id.button3);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override

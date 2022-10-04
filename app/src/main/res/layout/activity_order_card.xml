@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="16dp"
-    app:cardCornerRadius="16dp"
-    android:padding="16dp">
+    app:cardElevation="40dp"
+    app:cardCornerRadius="40dp"
+    android:padding="40dp">
 
     <LinearLayout
         android:layout_width="match_parent"

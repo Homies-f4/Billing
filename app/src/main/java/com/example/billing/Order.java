@@ -47,23 +47,18 @@ public class Order extends AppCompatActivity {
                 }
                 myAdapter1.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
 
             }
         });
-
-
-
         Button btn = findViewById(R.id.button4);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i2 =new Intent(Order.this, AddOrder.class);
+                Intent i2 =new Intent(Order.this, Add_Order.class);
                 i2.putExtra("Count_Of_Orders",i);
                 startActivity(i2);
-
             }
         });
     }
