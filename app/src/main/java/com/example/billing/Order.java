@@ -39,9 +39,9 @@ public class Order extends AppCompatActivity {
         myAdapter1 =new MyAdapter1(this, list, new MyAdapter1.OnOrderListener() {
             @Override
             public void onOrderClick(Order1 order1) {
-                Intent i=new Intent(Order.this,Order_Details.class);
-                i.putExtra("Ordernumber",order1.getOno());
-                startActivity(i);
+                Intent i1=new Intent(Order.this,Order_Details.class);
+                i1.putExtra("Ordernumber",order1.getOno());
+                startActivity(i1);
             }
         });
         recyclerView.setAdapter(myAdapter1);
