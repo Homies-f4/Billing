@@ -39,7 +39,7 @@ public class Order extends AppCompatActivity {
         myAdapter1 =new MyAdapter1(this, list, new MyAdapter1.OnOrderListener() {
             @Override
             public void onOrderClick(Order1 order1) {
-                Intent i=new Intent(Order.this,OrderDetails.class);
+                Intent i=new Intent(Order.this,Order_Details.class);
                 i.putExtra("Ordernumber",order1.getOno());
                 startActivity(i);
             }
@@ -64,7 +64,7 @@ public class Order extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i2 =new Intent(Order.this, OrderDetails.class);
+                Intent i2 =new Intent(Order.this, Add_Order.class);
                 i2.putExtra("Count_Of_Orders",i);
                 startActivity(i2);
             }

@@ -35,7 +35,9 @@ public class Add_Order extends AppCompatActivity {
                 o.setStatus("active");
                 o.setOno((int)count[0]);
                 db.child(String.valueOf(count[0])).setValue(o);
-                startActivity(new Intent(Add_Order.this, Order.class));
+                Intent i=new Intent(Add_Order.this,Order_Details.class);
+                i.putExtra("Ordernumber",o.getOno());
+                startActivity(i);
             }
         });
 

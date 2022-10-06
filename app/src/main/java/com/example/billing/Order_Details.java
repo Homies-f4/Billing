@@ -2,14 +2,12 @@ package com.example.billing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
-public class OrderDetails extends AppCompatActivity {
+public class Order_Details extends AppCompatActivity {
     TextView order_number;
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
