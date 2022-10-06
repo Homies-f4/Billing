@@ -35,13 +35,16 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Order1 o= list.get(position);
-        holder.ono.setText(String.valueOf(o.getOno()));
-        holder.tno.setText(String.valueOf(o.getTno()));
-        holder.itemView.setOnClickListener(view ->{
-            mOnOrderListener.onOrderClick(list.get(position));
-                }
-                );
+        if(String.valueOf(o.getStatus()) == "active")
+        {
+            holder.ono.setText(String.valueOf(o.getOno()));
+            holder.tno.setText(String.valueOf(o.getTno()));
+            holder.itemView.setOnClickListener(view ->{
+                mOnOrderListener.onOrderClick(list.get(position));
+                });
     }
+    }
+
 
     @Override
     public int getItemCount() {
