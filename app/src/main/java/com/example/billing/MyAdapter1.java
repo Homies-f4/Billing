@@ -15,11 +15,15 @@ import java.util.ArrayList;
 public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
     Context context;
     ArrayList<Order1> list;
+    OnOrderListener mOnOrderListener;
 
-
-    public MyAdapter1(Context context, ArrayList<Order1> list) {
+    public MyAdapter1(Context context, ArrayList<Order1> list,OnOrderListener mOnOrderListener) {
         this.context = context;
         this.list = list;
+        this.mOnOrderListener=mOnOrderListener;
+    }
+    public void onItemClick(int position){
+
     }
 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,6 +37,10 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
         Order1 o= list.get(position);
         holder.ono.setText(String.valueOf(o.getOno()));
         holder.tno.setText(String.valueOf(o.getTno()));
+        holder.itemView.setOnClickListener(view ->{
+            mOnOrderListener.onOrderClick(list.get(position));
+                }
+                );
     }
 
     @Override
@@ -47,8 +55,15 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
             super(itemView);
             ono=(TextView) itemView.findViewById(R.id.ono);
             tno=(TextView) itemView.findViewById(R.id.tno);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
 
-
+                                            }
+            }
+            );
         }
+    }
+    public interface OnOrderListener{
+        void onOrderClick(Order1 order1);
     }
 }

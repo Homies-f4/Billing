@@ -14,7 +14,7 @@ public class Order1 {
         return status;
     }
 
-    public long getTno() {
+    public  long getTno() {
         return tno;
     }
 

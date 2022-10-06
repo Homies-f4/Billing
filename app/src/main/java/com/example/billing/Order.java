@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +36,14 @@ public class Order extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter1 =new MyAdapter1(this,list);
+        myAdapter1 =new MyAdapter1(this, list, new MyAdapter1.OnOrderListener() {
+            @Override
+            public void onOrderClick(Order1 order1) {
+                Intent i=new Intent(Order.this,OrderDetails.class);
+                i.putExtra("Ordernumber",order1.getOno());
+                startActivity(i);
+            }
+        });
         recyclerView.setAdapter(myAdapter1);
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -56,7 +64,7 @@ public class Order extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i2 =new Intent(Order.this, Add_Order.class);
+                Intent i2 =new Intent(Order.this, OrderDetails.class);
                 i2.putExtra("Count_Of_Orders",i);
                 startActivity(i2);
             }
