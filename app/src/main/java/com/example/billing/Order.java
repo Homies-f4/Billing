@@ -51,7 +51,9 @@ public class Order extends AppCompatActivity {
                 i=(snapshot.getChildrenCount());
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Order1 o= dataSnapshot.getValue(Order1.class);
-                    list.add(o);
+                    if(String.valueOf(o.getStatus()).equals("active")) {
+                        list.add(o);
+                    }
                 }
                 myAdapter1.notifyDataSetChanged();
             }
