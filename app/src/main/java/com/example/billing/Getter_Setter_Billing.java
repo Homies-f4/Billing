@@ -10,6 +10,9 @@ public class Getter_Setter_Billing {
         this.cost = cost;
         this.sno = sno;
     }
+    public Getter_Setter_Billing() {
+
+    }
 
     public void setSno(int sno) {
         this.sno = sno;
@@ -19,10 +22,7 @@ public class Getter_Setter_Billing {
         return sno;
     }
 
-    Getter_Setter_Billing()
-    {
 
-    }
     public void setDish(String dish) {
         this.dish = dish;
     }

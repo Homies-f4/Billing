@@ -5,6 +5,9 @@ public class Getter_Setter_Items {
     private int qty;
     private int sno;
 
+    public Getter_Setter_Items() {
+    }
+
     public Getter_Setter_Items(String dname, int qty, int sno) {
         this.dname = dname;
         this.qty = qty;

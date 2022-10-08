@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,10 +20,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Order_Details extends AppCompatActivity {
+public class Order_Details extends AppCompatActivity implements Add_Dish_After_Order.showDialog{
     TextView ono;
     TextView tno;
-
+    Button add_Dish;
     ArrayList<Getter_Setter_Items> list;
     RecyclerView recyclerView;
     DatabaseReference db;
@@ -37,6 +40,7 @@ public class Order_Details extends AppCompatActivity {
 
         tno=findViewById(R.id.TableNumber);
         ono=findViewById(R.id.OrderNumber);
+        add_Dish=findViewById(R.id.button);
         ono.setText(String.valueOf(orderno));
         tno.setText(String.valueOf(tableno));
 
@@ -66,7 +70,23 @@ public class Order_Details extends AppCompatActivity {
 
             }
         });
+        add_Dish.setOnClickListener(new View.OnClickListener(){
 
-        ;
+            @Override
+            public void onClick(View view) {
+                openPopUp();
+            }
+
+
+        });
+    }
+
+    private void openPopUp() {
+        Add_Dish_After_Order adaf=new Add_Dish_After_Order();
+        adaf.show(getSupportFragmentManager(),"hello");
+    }
+    @Override
+    public void sentData(String dname, String qty) {
+        Log.d("Hii", dname);
     }
 }
