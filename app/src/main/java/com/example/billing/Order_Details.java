@@ -53,7 +53,7 @@ public class Order_Details extends AppCompatActivity implements Add_Dish_After_O
         list = new ArrayList<>();
         myAdapterOrderDishes =new MyAdapter_Order_Dishes(this,list);
         recyclerView.setAdapter(myAdapterOrderDishes);
-        
+
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
