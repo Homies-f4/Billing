@@ -40,7 +40,7 @@ public class MenuDishes extends AppCompatActivity {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                i=(snapshot.getChildrenCount());
+                 i=(snapshot.getChildrenCount());
                  for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Getter_Setter_Billing b= dataSnapshot.getValue(Getter_Setter_Billing.class);
                     list.add(b);

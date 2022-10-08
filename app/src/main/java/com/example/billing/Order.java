@@ -39,6 +39,7 @@ public class Order extends AppCompatActivity {
             public void onOrderClick(Getter_Setter_Orders_List orderGettersetter) {
                 Intent i1=new Intent(Order.this,Order_Details.class);
                 i1.putExtra("Ordernumber", orderGettersetter.getOno());
+                i1.putExtra("tablenumber",orderGettersetter.getTno());
                 startActivity(i1);
             }
         });
