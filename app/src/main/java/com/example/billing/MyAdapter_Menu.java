@@ -11,25 +11,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapter_Menu extends RecyclerView.Adapter<MyAdapter_Menu.MyViewHolder> {
     Context context;
-    ArrayList<Billing> list;
+    ArrayList<Getter_Setter_Billing> list;
 
 
-    public MyAdapter(Context context, ArrayList<Billing> list) {
+    public MyAdapter_Menu(Context context, ArrayList<Getter_Setter_Billing> list) {
         this.context = context;
         this.list = list;
     }
 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(context).inflate(R.layout.item,parent,false);
+        View v= LayoutInflater.from(context).inflate(R.layout.card_menu_list,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Billing b= list.get(position);
+        Getter_Setter_Billing b= list.get(position);
         holder.sno.setText(String.valueOf(b.getSno()));
         holder.dish.setText(b.getDish());
         holder.cost.setText(String.valueOf(b.getCost()));

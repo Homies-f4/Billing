@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,10 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MenuDishes extends AppCompatActivity {
-    ArrayList<Billing> list;
+    ArrayList<Getter_Setter_Billing> list;
     RecyclerView recyclerView;
     DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Billing");
-    MyAdapter myAdapter;
+    MyAdapter_Menu myAdapterMenu;
     long i=0;
 
     @Override
@@ -35,18 +34,18 @@ public class MenuDishes extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        myAdapter =new MyAdapter(this,list);
-        recyclerView.setAdapter(myAdapter);
+        myAdapterMenu =new MyAdapter_Menu(this,list);
+        recyclerView.setAdapter(myAdapterMenu);
 
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 i=(snapshot.getChildrenCount());
                  for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Billing b= dataSnapshot.getValue(Billing.class);
+                    Getter_Setter_Billing b= dataSnapshot.getValue(Getter_Setter_Billing.class);
                     list.add(b);
                  }
-                myAdapter.notifyDataSetChanged();
+                myAdapterMenu.notifyDataSetChanged();
             }
 
             @Override

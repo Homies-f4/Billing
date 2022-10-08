@@ -1,11 +1,11 @@
 package com.example.billing;
 
-public class Billing {
+public class Getter_Setter_Billing {
     private String dish;
     private Float cost;
     private int sno;
 
-    public Billing(String dish, Float cost, int sno) {
+    public Getter_Setter_Billing(String dish, Float cost, int sno) {
         this.dish = dish;
         this.cost = cost;
         this.sno = sno;
@@ -19,7 +19,7 @@ public class Billing {
         return sno;
     }
 
-    Billing()
+    Getter_Setter_Billing()
     {
 
     }

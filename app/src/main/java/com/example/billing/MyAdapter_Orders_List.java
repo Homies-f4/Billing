@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
+public class MyAdapter_Orders_List extends RecyclerView.Adapter<MyAdapter_Orders_List.MyViewHolder> {
     Context context;
-    ArrayList<Order1> list;
+    ArrayList<Getter_Setter_Orders_List> list;
     OnOrderListener mOnOrderListener;
 
-    public MyAdapter1(Context context, ArrayList<Order1> list,OnOrderListener mOnOrderListener) {
+    public MyAdapter_Orders_List(Context context, ArrayList<Getter_Setter_Orders_List> list, OnOrderListener mOnOrderListener) {
         this.context = context;
         this.list = list;
         this.mOnOrderListener=mOnOrderListener;
@@ -27,14 +26,14 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
     }
 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(context).inflate(R.layout.activity_order_card,parent,false);
+        View v= LayoutInflater.from(context).inflate(R.layout.card_orders_list,parent,false);
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Order1 o= list.get(position);
+        Getter_Setter_Orders_List o= list.get(position);
             holder.ono.setText(String.valueOf(o.getOno()));
             holder.tno.setText(String.valueOf(o.getTno()));
             holder.itemView.setOnClickListener(view ->{
@@ -65,6 +64,6 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.MyViewHolder> {
         }
     }
     public interface OnOrderListener{
-        void onOrderClick(Order1 order1);
+        void onOrderClick(Getter_Setter_Orders_List orderGettersetter);
     }
 }

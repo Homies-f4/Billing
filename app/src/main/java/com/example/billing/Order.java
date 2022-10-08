@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,10 +19,10 @@ import java.util.ArrayList;
 
 public class Order extends AppCompatActivity {
 
-    ArrayList<Order1> list;
+    ArrayList<Getter_Setter_Orders_List> list;
     RecyclerView recyclerView;
     DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Order");
-    MyAdapter1 myAdapter1;
+    MyAdapter_Orders_List myAdapterOrderslist;
     long i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,26 +34,26 @@ public class Order extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter1 =new MyAdapter1(this, list, new MyAdapter1.OnOrderListener() {
+        myAdapterOrderslist =new MyAdapter_Orders_List(this, list, new MyAdapter_Orders_List.OnOrderListener() {
             @Override
-            public void onOrderClick(Order1 order1) {
+            public void onOrderClick(Getter_Setter_Orders_List orderGettersetter) {
                 Intent i1=new Intent(Order.this,Order_Details.class);
-                i1.putExtra("Ordernumber",order1.getOno());
+                i1.putExtra("Ordernumber", orderGettersetter.getOno());
                 startActivity(i1);
             }
         });
-        recyclerView.setAdapter(myAdapter1);
+        recyclerView.setAdapter(myAdapterOrderslist);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot snapshot) {
                 i=(snapshot.getChildrenCount());
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Order1 o= dataSnapshot.getValue(Order1.class);
+                    Getter_Setter_Orders_List o= dataSnapshot.getValue(Getter_Setter_Orders_List.class);
                     if(String.valueOf(o.getStatus()).equals("active")) {
                         list.add(o);
                     }
                 }
-                myAdapter1.notifyDataSetChanged();
+                myAdapterOrderslist.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -72,4 +70,5 @@ public class Order extends AppCompatActivity {
             }
         });
     }
+
 }

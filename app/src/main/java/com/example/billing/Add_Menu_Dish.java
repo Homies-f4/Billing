@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Add_Menu_Dish extends AppCompatActivity {
     EditText dish;
     EditText cost;
-    Billing b;
+    Getter_Setter_Billing b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class Add_Menu_Dish extends AppCompatActivity {
         Bundle b1= getIntent().getExtras();
         final long[] count = {b1.getLong("count")};
         Log.d("Count:", String.valueOf(count[0]));
-        b= new Billing();
+        b= new Getter_Setter_Billing();
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Billing");
         dish = findViewById(R.id.editTextTextPersonName);

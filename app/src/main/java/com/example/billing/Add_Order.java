@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Add_Order extends AppCompatActivity {
     EditText tno;
-    Order1 o;
+    Getter_Setter_Orders_List o;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class Add_Order extends AppCompatActivity {
         final long[] count = {b2.getLong("Count_Of_Orders")};
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Order");
-        o= new Order1();
+        o= new Getter_Setter_Orders_List();
         tno = findViewById(R.id.editTextNumberSigned);
         Button btn1= findViewById(R.id.button5);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +48,6 @@ public class Add_Order extends AppCompatActivity {
                 startActivity(new Intent(Add_Order.this, Order.class));
             }
         });
+
     }
 }
