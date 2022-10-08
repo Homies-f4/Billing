@@ -33,7 +33,7 @@ public class Add_Order extends AppCompatActivity {
                 Long p=Long.parseLong(tno.getText().toString().trim());
                 o.setTno(p);
                 o.setStatus("active");
-                o.setOno((int)count[0]);
+                o.setOno(String.valueOf(count[0]));
                 db.child(String.valueOf(count[0])).setValue(o);
                 Intent i=new Intent(Add_Order.this,Order_Details.class);
                 i.putExtra("Ordernumber",o.getOno());

@@ -1,11 +1,11 @@
 package com.example.billing;
 
 public class Getter_Setter_Orders_List {
-    long ono;
+    String ono;
     String status;
     long tno;
 
-    public Getter_Setter_Orders_List(long ono, String status, long tno) {
+    public Getter_Setter_Orders_List(String ono, String status, long tno) {
         this.ono = ono;
         this.status = status;
         this.tno = tno;
@@ -26,11 +26,11 @@ public class Getter_Setter_Orders_List {
         this.status = status;
     }
 
-    public long getOno() {
+    public String getOno() {
         return ono;
     }
 
-    public void setOno(int ono) {
+    public void setOno(String ono) {
         this.ono = ono;
     }
 

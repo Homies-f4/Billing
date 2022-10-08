@@ -38,8 +38,10 @@ public class Order extends AppCompatActivity {
             @Override
             public void onOrderClick(Getter_Setter_Orders_List orderGettersetter) {
                 Intent i1=new Intent(Order.this,Order_Details.class);
-                i1.putExtra("Ordernumber", orderGettersetter.getOno());
-                i1.putExtra("tablenumber",orderGettersetter.getTno());
+                Bundle extras = new Bundle();
+                extras.putString("Ordernumber",orderGettersetter.getOno());
+                extras.putLong("tablenumber",orderGettersetter.getTno());
+                i1.putExtras(extras);
                 startActivity(i1);
             }
         });

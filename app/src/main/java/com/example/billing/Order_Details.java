@@ -32,7 +32,7 @@ public class Order_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         Bundle b1= getIntent().getExtras();
-        final long orderno = b1.getLong("Ordernumber");
+        final String orderno = b1.getString("Ordernumber");
         final long tableno = b1.getLong("tablenumber");
 
         tno=findViewById(R.id.TableNumber);
@@ -40,7 +40,7 @@ public class Order_Details extends AppCompatActivity {
         ono.setText(String.valueOf(orderno));
         tno.setText(String.valueOf(tableno));
 
-        db = FirebaseDatabase.getInstance().getReference().child(String.valueOf(orderno));
+        db = FirebaseDatabase.getInstance().getReference().child("Order").child(orderno).child("items");
 
         recyclerView = findViewById(R.id.recyclerView3);
         recyclerView.setHasFixedSize(true);
@@ -49,13 +49,14 @@ public class Order_Details extends AppCompatActivity {
         list = new ArrayList<>();
         myAdapterOrderDishes =new MyAdapter_Order_Dishes(this,list);
         recyclerView.setAdapter(myAdapterOrderDishes);
+        
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 i=(snapshot.getChildrenCount());
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                    Getter_Setter_Items i = dataSnapshot.getValue(Getter_Setter_Items.class);
-                    list.add(i);
+                    Getter_Setter_Items j = dataSnapshot.getValue(Getter_Setter_Items.class);
+                    list.add(j);
                 }
                 myAdapterOrderDishes.notifyDataSetChanged();
             }
