@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,11 +18,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuDishes extends AppCompatActivity {
     ArrayList<Getter_Setter_Billing> list;
+    ArrayList<String> list1;
     RecyclerView recyclerView;
-    DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Billing");
+    DatabaseReference db;
     MyAdapter_Menu myAdapterMenu;
     long i=0;
 
@@ -30,7 +33,7 @@ public class MenuDishes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_dishes);
         recyclerView = findViewById(R.id.recyclerView);
-
+        db = FirebaseDatabase.getInstance().getReference().child("Billing");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
@@ -44,6 +47,8 @@ public class MenuDishes extends AppCompatActivity {
                  for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Getter_Setter_Billing b= dataSnapshot.getValue(Getter_Setter_Billing.class);
                     list.add(b);
+                    list1.add(b.getDish());
+
                  }
                 myAdapterMenu.notifyDataSetChanged();
             }
@@ -54,7 +59,7 @@ public class MenuDishes extends AppCompatActivity {
             }
         });
 
-
+        Log.d("Hello",list1.get(0));
 
         Button btn= findViewById(R.id.button1);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +70,9 @@ public class MenuDishes extends AppCompatActivity {
                 startActivity(i1);
             }
         });
+    }
+    public ArrayList menuList(){
+        return list1;
     }
 
 }

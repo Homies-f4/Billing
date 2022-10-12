@@ -88,5 +88,6 @@ public class Order_Details extends AppCompatActivity implements Add_Dish_After_O
     @Override
     public void sentData(String dname, String qty) {
         Log.d("Hii", dname);
+        Log.d("Hii", qty);
     }
 }
