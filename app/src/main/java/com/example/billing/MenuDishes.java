@@ -22,7 +22,8 @@ import java.util.List;
 
 public class MenuDishes extends AppCompatActivity {
     ArrayList<Getter_Setter_Billing> list;
-    ArrayList<String> list1;
+    String[] a= new String[1000];
+    int k=0;
     RecyclerView recyclerView;
     DatabaseReference db;
     MyAdapter_Menu myAdapterMenu;
@@ -47,8 +48,8 @@ public class MenuDishes extends AppCompatActivity {
                  for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Getter_Setter_Billing b= dataSnapshot.getValue(Getter_Setter_Billing.class);
                     list.add(b);
-                    list1.add(b.getDish());
-
+                    a[k]=b.getDish();
+                    k++;
                  }
                 myAdapterMenu.notifyDataSetChanged();
             }
@@ -58,9 +59,6 @@ public class MenuDishes extends AppCompatActivity {
 
             }
         });
-
-        Log.d("Hello",list1.get(0));
-
         Button btn= findViewById(R.id.button1);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +70,6 @@ public class MenuDishes extends AppCompatActivity {
         });
     }
     public String[] menuList(){
-        String[] a= new String[list1.size()];
-        for (int k=0;i<list1.size();k++)
-        {
-            a[k]=list1.get(k);
-        }
         return a;
     }
 
