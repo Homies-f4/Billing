@@ -31,20 +31,37 @@ import java.util.List;
 
 public class Add_Dish_After_Order extends DialogFragment {
     AutoCompleteTextView Dname,Quantity;
-    MenuDishes md;
+    int i=0;
     showDialog ShowDialog;
     String[] menu1;
     String[] listItems={"1","2","3","4","5","6","7","8","9","10"};
+    DatabaseReference db;
+    MyAdapter_Menu myAdapterMenu;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
         LayoutInflater inflater=getActivity().getLayoutInflater();
         View view=inflater.inflate(R.layout.add_dish_after_order,null);
+
         Quantity=view.findViewById(R.id.qty);
         Dname=view.findViewById(R.id.dishname);
-        md=new MenuDishes();
-        menu1=  md.menuList();
+
+        db = FirebaseDatabase.getInstance().getReference().child("Billing");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot){
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    Getter_Setter_Billing b= dataSnapshot.getValue(Getter_Setter_Billing.class);
+                    menu1[i]=b.getDish();
+                    i++;
+                }
+            }
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         ArrayAdapter<String> adapt=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,listItems);
         Quantity.setAdapter(adapt);
         ArrayAdapter<String> adapt1=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,menu1);
