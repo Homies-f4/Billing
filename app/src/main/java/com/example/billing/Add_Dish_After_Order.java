@@ -33,8 +33,7 @@ public class Add_Dish_After_Order extends DialogFragment {
     AutoCompleteTextView Dname,Quantity;
     MenuDishes md;
     showDialog ShowDialog;
-    ArrayList<String> menu1;
-    String[] menu={"11"};
+    String[] menu1;
     String[] listItems={"1","2","3","4","5","6","7","8","9","10"};
     @NonNull
     @Override
@@ -48,7 +47,7 @@ public class Add_Dish_After_Order extends DialogFragment {
         menu1=  md.menuList();
         ArrayAdapter<String> adapt=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,listItems);
         Quantity.setAdapter(adapt);
-        ArrayAdapter<ArrayList<String>> adapt1=new ArrayAdapter<ArrayList<String>>(getActivity(),android.R.layout.simple_dropdown_item_1line, Collections.singletonList(menu1));
+        ArrayAdapter<String> adapt1=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,menu1);
         Dname.setAdapter(adapt1);
 
         builder.setView(view).
@@ -65,7 +64,7 @@ public class Add_Dish_After_Order extends DialogFragment {
 
                         String quantity= Quantity.getText().toString();
                         ShowDialog.sentData(dname,quantity);
-                        Log.d("HEllo",menu1.get(0));
+                        Log.d("HEllo",menu1[0]);
                     }
                 });
 

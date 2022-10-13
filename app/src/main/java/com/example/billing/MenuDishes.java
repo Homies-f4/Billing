@@ -71,8 +71,13 @@ public class MenuDishes extends AppCompatActivity {
             }
         });
     }
-    public ArrayList menuList(){
-        return list1;
+    public String[] menuList(){
+        String[] a= new String[list1.size()];
+        for (int k=0;i<list1.size();k++)
+        {
+            a[k]=list1.get(k);
+        }
+        return a;
     }
 
 }
