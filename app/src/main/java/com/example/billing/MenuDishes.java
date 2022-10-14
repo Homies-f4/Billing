@@ -41,7 +41,7 @@ public class MenuDishes extends AppCompatActivity {
         myAdapterMenu =new MyAdapter_Menu(this,list);
         recyclerView.setAdapter(myAdapterMenu);
 
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                  i=(snapshot.getChildrenCount());
@@ -66,6 +66,7 @@ public class MenuDishes extends AppCompatActivity {
                 Intent i1 =new Intent(MenuDishes.this, Add_Menu_Dish.class);
                 i1.putExtra("count",i);
                 startActivity(i1);
+                finish();
             }
         });
     }

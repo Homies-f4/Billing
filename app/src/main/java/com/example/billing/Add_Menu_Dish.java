@@ -41,6 +41,7 @@ public class Add_Menu_Dish extends AppCompatActivity {
                 db.child(String.valueOf(count[0])).setValue(b);
                 Toast.makeText(Add_Menu_Dish.this,"Data inserted!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Add_Menu_Dish.this, MenuDishes.class));
+                finish();
             }
         });
         Button btn2= findViewById(R.id.button3);

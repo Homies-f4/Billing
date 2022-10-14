@@ -48,14 +48,17 @@ public class Add_Dish_After_Order extends DialogFragment {
         Dname=view.findViewById(R.id.dishname);
 
         db = FirebaseDatabase.getInstance().getReference().child("Billing");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot){
+                menu1=new String[(int)snapshot.getChildrenCount()];
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Getter_Setter_Billing b= dataSnapshot.getValue(Getter_Setter_Billing.class);
                     menu1[i]=b.getDish();
                     i++;
                 }
+                ArrayAdapter<String> adapt1=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,menu1);
+                Dname.setAdapter(adapt1);
             }
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -64,8 +67,6 @@ public class Add_Dish_After_Order extends DialogFragment {
 
         ArrayAdapter<String> adapt=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,listItems);
         Quantity.setAdapter(adapt);
-        ArrayAdapter<String> adapt1=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,menu1);
-        Dname.setAdapter(adapt1);
 
         builder.setView(view).
                 setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

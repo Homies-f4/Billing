@@ -11,6 +11,8 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 public class Add_Order extends AppCompatActivity {
     EditText tno;
     Getter_Setter_Orders_List o;
@@ -20,7 +22,17 @@ public class Add_Order extends AppCompatActivity {
         setContentView(R.layout.activity_add_order);
 
         Bundle b2= getIntent().getExtras();
-        final long[] count = {b2.getLong("Count_Of_Orders")};
+        long count = b2.getLong("Count_Of_Orders");
+
+        Date date = new Date();
+        String date1 = String.valueOf(date.getDate());
+        String mon=String.valueOf(date.getMonth()+1);
+        String year=String.valueOf(date.getYear()+1900);
+        StringBuilder newdate= new StringBuilder();
+        newdate.append(date1);
+        newdate.append(mon);
+        newdate.append(year);
+
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Order");
         o= new Getter_Setter_Orders_List();
@@ -29,12 +41,13 @@ public class Add_Order extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count[0] = count[0] +1;
+                newdate.append(count+1);
+
                 Long p=Long.parseLong(tno.getText().toString().trim());
                 o.setTno(p);
                 o.setStatus("active");
-                o.setOno(String.valueOf(count[0]));
-                db.child(String.valueOf(count[0])).setValue(o);
+                o.setOno(String.valueOf(newdate));
+                db.child(String.valueOf(newdate)).setValue(o);
                 Intent i=new Intent(Add_Order.this,Order_Details.class);
                 i.putExtra("Ordernumber",o.getOno());
                 startActivity(i);
