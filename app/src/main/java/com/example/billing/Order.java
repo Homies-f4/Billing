@@ -43,6 +43,7 @@ public class Order extends AppCompatActivity {
                 extras.putLong("tablenumber",orderGettersetter.getTno());
                 i1.putExtras(extras);
                 startActivity(i1);
+                finish();
             }
         });
         recyclerView.setAdapter(myAdapterOrderslist);

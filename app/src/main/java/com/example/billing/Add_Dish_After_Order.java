@@ -82,7 +82,6 @@ public class Add_Dish_After_Order extends DialogFragment {
 
                         String quantity= Quantity.getText().toString();
                         ShowDialog.sentData(dname,quantity);
-                        Log.d("HEllo",menu1[0]);
                     }
                 });
 

@@ -11,11 +11,14 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Add_Order extends AppCompatActivity {
     EditText tno;
     Getter_Setter_Orders_List o;
+    LocalDate dateObj;
+    DateTimeFormatter formatter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,15 +27,19 @@ public class Add_Order extends AppCompatActivity {
         Bundle b2= getIntent().getExtras();
         long count = b2.getLong("Count_Of_Orders");
 
-        Date date = new Date();
-        String date1 = String.valueOf(date.getDate());
-        String mon=String.valueOf(date.getMonth()+1);
-        String year=String.valueOf(date.getYear()+1900);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            dateObj = LocalDate.now();
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        }
+        String date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = dateObj.format(formatter);
+        }
+        System.out.println(date);
         StringBuilder newdate= new StringBuilder();
-        newdate.append(date1);
-        newdate.append(mon);
-        newdate.append(year);
-
+        newdate.append(date);
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Order");
         o= new Getter_Setter_Orders_List();
@@ -48,9 +55,13 @@ public class Add_Order extends AppCompatActivity {
                 o.setStatus("active");
                 o.setOno(String.valueOf(newdate));
                 db.child(String.valueOf(newdate)).setValue(o);
+                Bundle extras = new Bundle();
                 Intent i=new Intent(Add_Order.this,Order_Details.class);
-                i.putExtra("Ordernumber",o.getOno());
+                extras.putString("Ordernumber",o.getOno());
+                extras.putLong("tablenumber",o.getTno());
+                i.putExtras(extras);
                 startActivity(i);
+                finish();
             }
         });
 
