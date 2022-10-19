@@ -27,15 +27,18 @@ public class Order_Details extends AppCompatActivity implements Add_Dish_After_O
     ArrayList<Getter_Setter_Items> list;
     RecyclerView recyclerView;
     DatabaseReference db;
+    String orderno;
     MyAdapter_Order_Dishes myAdapterOrderDishes;
     long i=0;
+    int k=0;
+    Getter_Setter_Items o;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
         Bundle b1= getIntent().getExtras();
-        final String orderno = b1.getString("Ordernumber");
+        orderno = b1.getString("Ordernumber");
         final long tableno = b1.getLong("tablenumber");
 
         tno=findViewById(R.id.TableNumber);
@@ -64,20 +67,15 @@ public class Order_Details extends AppCompatActivity implements Add_Dish_After_O
                 }
                 myAdapterOrderDishes.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         add_Dish.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 openPopUp();
             }
-
-
         });
     }
 
@@ -87,7 +85,36 @@ public class Order_Details extends AppCompatActivity implements Add_Dish_After_O
     }
     @Override
     public void sentData(String dname, String qty) {
-        Log.d("Hii", dname);
-        Log.d("Hii", qty);
+        db = FirebaseDatabase.getInstance().getReference().child("Order").child(orderno);
+        DatabaseReference db1=db.child("items");
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.getChildrenCount() <= 3) {
+                    o.setSno(1);
+                    o.setDname(dname);
+                    o.setQty(Integer.parseInt(qty));
+                    db.child("items").child(String.valueOf(1)).setValue(o);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        db1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                k= (int) snapshot.getChildrenCount();
+                o.setSno(k);
+                o.setDname(dname);
+                o.setQty(Integer.parseInt(qty));
+                db1.child(String.valueOf(k)).setValue(o);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
